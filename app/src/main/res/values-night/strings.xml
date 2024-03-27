@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edt_hint_second_name">Second Name</string>
+    <string name="edt_hint_first_name">First Name</string>
+    <string name="tv_love_calculator">Love Calculator</string>
+    <string name="tv_first_name">First Name</string>
+    <string name="tv_second_name">Second Name</string>
+    <string name="bt_calculate">Calculate</string>
+    <string name="tv_home1">Home</string>
+    <string name="tv_history1">History</string>
+    <string name="tv_your_score">Your Score</string>
+    <string name="bt_try_again">Try Again</string>
+    <string name="tv_home2">Home</string>
+    <string name="tv_history2">History</string>
+</resources>
