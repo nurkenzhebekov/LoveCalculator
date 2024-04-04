@@ -57,4 +57,8 @@ dependencies {
     //Retrofit2
     implementation("com.squareup.retrofit2:retrofit:2.10.0")
     implementation("com.squareup.retrofit2:converter-gson:2.10.0")
+
+    //Fragment Library
+    val fragment_version = "1.6.2"
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
 }

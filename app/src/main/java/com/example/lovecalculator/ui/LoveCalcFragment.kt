@@ -1,25 +1,24 @@
 package com.example.lovecalculator.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.lovecalculator.R
-import com.example.lovecalculator.RetrofitService
 import com.example.lovecalculator.databinding.FragmentLoveCalcBinding
-import com.example.lovecalculator.model.LoveCalcModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoveCalcFragment : Fragment() {
 
     private var _binding: FragmentLoveCalcBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel : LoveCalcViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,31 +35,24 @@ class LoveCalcFragment : Fragment() {
         initClickers()
     }
 
+    @SuppressLint("FragmentLiveDataObserve")
     private fun initClickers() {
         with(binding) {
             btCalculate.setOnClickListener {
-                RetrofitService.api.getLoveCalc(
-                    firstName = edtFirstName.text.toString(),
-                    secondName = edtSecondName.text.toString()
-                ).enqueue(object : Callback<LoveCalcModel>{
-                    override fun onResponse(call: Call<LoveCalcModel>, response: Response<LoveCalcModel>) {
-                        val data = response.body()
-                        if (data != null) {
+                viewModel.getLiveData(
+                    edtFirstName.text.toString(),
+                    edtSecondName.text.toString())
+                    .observe(this@LoveCalcFragment,
+                        Observer {
                             findNavController().navigate(
                                 R.id.calcResultFragment, bundleOf(
-                                    "firstName" to data.firstName,
-                                    "secondName" to data.secondName,
-                                    "percentage" to data.percentage,
-                                    "result" to data.result
+                                    "firstName" to it.firstName,
+                                    "secondName" to it.secondName,
+                                    "percentage" to it.percentage,
+                                    "result" to it.result
                                 )
                             )
-                        }
-                    }
-
-                    override fun onFailure(call: Call<LoveCalcModel>, error: Throwable) {
-                        Log.e("loveError", "onFailure: ${error.message}")
-                    }
-                })
+                        })
             }
         }
     }
