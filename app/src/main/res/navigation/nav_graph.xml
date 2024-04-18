@@ -37,5 +37,10 @@
             android:name="result"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.lovecalculator.ui.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 
 </navigation>

@@ -2,6 +2,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs")
+    id ("org.jetbrains.kotlin.kapt")
+    id ("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -61,4 +64,17 @@ dependencies {
     //Fragment Library
     val fragment_version = "1.6.2"
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
+
+    //Hilt
+    implementation ("com.google.dagger:hilt-android:2.51.1")
+
+    //kapt
+    kapt ("com.google.dagger:hilt-compiler:2.51.1")
+
+    //Room
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
 }
