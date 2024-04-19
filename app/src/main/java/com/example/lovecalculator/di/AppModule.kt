@@ -33,8 +33,10 @@ class AppModule {
     fun provideDatabase(@ApplicationContext context: Context): LoveDatabase {
         return Room.databaseBuilder(
             context,
-            LoveDatabase::class.java, "love_database"
-        ).build()
+            LoveDatabase::class.java, "love_db"
+        )
+            .allowMainThreadQueries()
+            .build()
     }
 
 }

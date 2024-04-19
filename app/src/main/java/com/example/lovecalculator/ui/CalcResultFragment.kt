@@ -37,6 +37,9 @@ class CalcResultFragment : Fragment() {
             btTryAgain.setOnClickListener {
                 findNavController().navigate(R.id.loveCalcFragment)
             }
+            history.setOnClickListener {
+                findNavController().navigate(R.id.historyFragment)
+            }
         }
     }
 

@@ -5,17 +5,18 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.lovecalculator.remote.LoveCalcModel
 
 @Dao
 interface LoveDao {
 
     @Insert
-    fun insertLoveCompatibility(loveComp: LoveCompatibility)
+    fun insertLoveCompatibility(loveCalcModel: LoveCalcModel)
 
     @Delete
-    fun deleteLoveCompatibility(loveComp: LoveCompatibility)
+    fun deleteLoveCompatibility(loveCalcModel: LoveCalcModel)
 
-    @Query("SELECT * FROM lovecompatibility")
-    fun getAll() : LiveData<List<LoveCompatibility>>
+    @Query("SELECT * FROM love_table ORDER BY firstName ASC")
+    fun getAll() : List<LoveCalcModel>
 
 }

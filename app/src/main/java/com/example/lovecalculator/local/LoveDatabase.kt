@@ -2,9 +2,10 @@ package com.example.lovecalculator.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.lovecalculator.remote.LoveCalcModel
 
 @Database(
-    entities =[LoveCompatibility::class],
+    entities =[LoveCalcModel::class],
     version = 1,
     exportSchema = false
 )

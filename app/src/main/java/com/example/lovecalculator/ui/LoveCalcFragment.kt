@@ -10,9 +10,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.lovecalculator.App
 import com.example.lovecalculator.R
 import com.example.lovecalculator.databinding.FragmentLoveCalcBinding
+import com.example.lovecalculator.local.LoveDao
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoveCalcFragment : Fragment() {
@@ -43,6 +46,7 @@ class LoveCalcFragment : Fragment() {
                 viewModel.getLiveData(
                     edtFirstName.text.toString(), edtSecondName.text.toString()
                 ).observe(this@LoveCalcFragment, Observer {
+                    viewModel.insertLoveCompatibility(it)
                     findNavController().navigate(
                         R.id.calcResultFragment, bundleOf(
                             "firstName" to it.firstName,
@@ -52,6 +56,9 @@ class LoveCalcFragment : Fragment() {
                         )
                     )
                 })
+            }
+            history.setOnClickListener {
+                findNavController().navigate(R.id.historyFragment)
             }
         }
     }
